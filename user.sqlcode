@@ -1,0 +1,8 @@
+create profile de_profile limit                              /*create a profile to set various limit on database resources*/
+sessions_per_user 2                                          /*user can open 2 sessions concurrently*/
+idle_time 5                                                  /*can stay idle for 2 minutes only after that session will be closed*/
+connect_time 10 ;                                            /*user can be stretched for maximum 10minutes*/
+
+alter user john profile de_profile;                          /*assign profile to user,user john is already created if its not then create a user first*/
+select username, profile from dba_users ;                    /*to check all the user,if you want to check only for john then use where clause(where username ='john')*/
+select*from dba_profiles where PROFILE='DE_PROFILE';         /*cross check the result*/
